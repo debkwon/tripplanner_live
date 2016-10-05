@@ -1,4 +1,5 @@
-var initializeMap = function (){
+// var mapModule = (function(){
+  function initializeMap(){
 
   var fullstackAcademy = new google.maps.LatLng(40.705086, -74.009151);
 
@@ -40,36 +41,50 @@ var initializeMap = function (){
     styles: styleArr
   });
 
-  var iconURLs = {
-    hotel: '/images/lodging_0star.png',
-    restaurant: '/images/restaurant.png',
-    activity: '/images/star-3.png'
-  };
+  return currentMap;
 
-  // var getCoords = function(address){
-  //   var geocoder = new google.maps.Geocoder();
-  //   geocoder.geocode({'address': address}, function(results,status){
-  //     if (status == google.maps.GeocoderStatus.OK){
-  //       var latitude = address.geometry.location.lat();
-  //       var longitude = address.geometry.location.lng();
-  //       alert("this is lat " + latitude);
-  //     }
-  //   });
+
    
   // };
 
-  function drawMarker (type, coords) {
-    var latLng = new google.maps.LatLng(coords[0], coords[1]);
-    var iconURL = iconURLs[type];
-    var marker = new google.maps.Marker({
-      icon: iconURL,
-      position: latLng
-    });
-    marker.setMap(currentMap);
-  }
+  // drawMarker('hotel', [40.705137, -74.007624]);
+  // drawMarker('restaurant', [40.705137, -74.013940]);
+  // drawMarker('activity', [40.716291, -73.995315]);
 
-  drawMarker('hotel');//, [40.705137, -74.007624]);
-  drawMarker('restaurant');//, [40.705137, -74.013940]);
-  drawMarker('activity');//, [40.716291, -73.995315]);
+}
 
+var iconURLs = {
+  hotel: '/images/lodging_0star.png',
+  restaurant: '/images/restaurant.png',
+  activity: '/images/star-3.png'
 };
+
+function drawMarker (map, type, coords) {
+  var latLng = new google.maps.LatLng(coords[0], coords[1]);
+  var iconURL = iconURLs[type];
+  var marker = new google.maps.Marker({
+    icon: iconURL,
+    position: latLng
+  });
+  marker.setMap(map);
+}
+
+// var getCoords = function(map, type, address){
+//   var geocoder = new google.maps.Geocoder();
+//   geocoder.geocode({'address': address}, function(results,status){
+//     if (status == 'OK')  {
+//       var location = results[0].geometry.location;
+//       var iconURL = iconURLs[type];
+//       var marker = new google.maps.Marker({
+//           icon: iconURL,
+//           map: map,
+//           position: results[0].geometry.location
+//         });
+//       // map.setCenter(results[0].geometry.location);
+//       };
+//       // var latLng = results[0].geometry.location.LatLng();
+//       // alert("this is latLng " + LatLng);
+//     });
+//   };
+// });
+
